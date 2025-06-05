@@ -1,0 +1,414 @@
+@use "sass:math";
+
+// Proměnné
+$grey-100: hsl(0, 0%, 10%);
+$grey-200: hsl(0, 0%, 20%);
+$grey-300: hsl(0, 0%, 30%);
+$grey-400: hsl(0, 0%, 40%);
+$grey-500: hsl(0, 0%, 50%);
+$grey-600: hsl(0, 0%, 60%);
+$grey-700: hsl(0, 0%, 70%);
+$grey-800: hsl(0, 0%, 80%);
+$grey-900: hsl(0, 0%, 90%);
+
+$primary: #004769;
+$accent: #fc0;
+
+$font-default: 'Open Sans', sans-serif;
+$font-special: 'Raleway', sans-serif;
+
+$spacer: 1rem;
+$spacer-quarter: math.div($spacer, 4);
+$spacer-half: math.div($spacer, 2);
+$spacer-bigger: $spacer * 1.5;
+$spacer-double: $spacer * 2;
+
+// Box sizing
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+// Body a layout wrapper
+body {
+  margin: 0;
+  font-family: $font-default;
+  background-color: $grey-900;
+}
+
+.layout {
+  &__wrapper {
+    max-width: 66rem;
+    margin: 0 auto;
+    background-color: white;
+  }
+}
+
+// Nadpisy
+.heading {
+  &-1, &-2, &-3 {
+    font-family: $font-special;
+    font-weight: normal;
+  }
+
+  &-1 { font-size: 2rem; }
+  &-2 { font-size: 1.5rem; }
+  &-3 { font-size: 1.2rem; }
+}
+
+:is(.heading-1, .heading-2, .heading-3):first-child {
+  margin-top: 0;
+}
+
+.utils {
+  &__text-center {
+    text-align: center;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  padding: $spacer-double $spacer-bigger;
+}
+
+// Grid
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacer-bigger;
+
+  &__column--double {
+    grid-column: span 2;
+  }
+}
+
+// Button
+.button {
+  padding: $spacer-half $spacer-bigger;
+  background-color: $accent;
+  font-size: 1rem;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+// HEADER
+.header {
+  &__contact {
+    padding: $spacer-half $spacer-bigger;
+    font-size: 14px;
+    text-align: right;
+    background-color: $grey-100;
+    color: white;
+
+    a {
+      color: white;
+
+      &:hover,
+      &:focus {
+        color: $accent;
+      }
+    }
+
+    &-email {
+      margin-right: $spacer;
+    }
+  }
+
+  &__inner {
+    padding: $spacer $spacer-bigger;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__logo {
+    font-family: $font-special;
+    font-size: 36px;
+    font-weight: bold;
+    flex: 0 0 100%;
+    margin-bottom: $spacer-half;
+  }
+
+  &__stars {
+    height: 1em;
+    width: auto;
+    margin-right: $spacer-half;
+    vertical-align: baseline;
+  }
+
+  &__address {
+    display: flex;
+    align-items: center;
+  }
+
+  &__image {
+    min-height: 300px;
+    background: url(./../images/header-bg.jpg) no-repeat right center/cover;
+  }
+}
+
+// MENU
+.menu {
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  &__item {
+    margin: 0;
+    padding: 0;
+
+    &:not(:last-child) {
+      border-right: 1px solid $grey-900;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: $spacer-half $spacer;
+    font-family: $font-special;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      background-color: $accent;
+    }
+  }
+}
+
+// ABOUT
+.about {
+  box-shadow: inset 0 0 50px $grey-900;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacer-bigger;
+
+  &__content {
+    grid-column: span 2;
+  }
+}
+
+// TESTIMONIAL
+.testimonial {
+  &__bubble {
+    border-radius: $spacer;
+    padding: $spacer;
+    background-color: $primary;
+    color: white;
+    position: relative;
+    margin-bottom: $spacer-bigger;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 20px;
+      width: $spacer;
+      height: $spacer;
+      border-right: $spacer solid $primary;
+      border-bottom: $spacer solid transparent;
+    }
+
+    :first-child {
+      margin-top: 0;
+    }
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__score {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  &__name {
+    color: $grey-500;
+    font-size: 14px;
+    padding-left: $spacer;
+  }
+}
+
+// ROOM-PREVIEW
+.room-preview {
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// ROOM
+.room {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacer-bigger;
+
+  &:not(:last-child) {
+    margin-bottom: $spacer-double;
+  }
+
+  &__description {
+    grid-column: span 2;
+  }
+}
+
+// SERVICES
+.services {
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 60px;
+    height: 60px;
+    margin-right: $spacer;
+    border-radius: 50%;
+    background-color: $accent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+  }
+
+  &__description {
+    margin: 0;
+
+    span {
+      display: block;
+      color: $grey-500;
+      font-size: 13px;
+    }
+  }
+
+  &__title {
+    margin-top: $spacer * 3;
+  }
+}
+
+// GALLERY
+.gallery {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    gap: 1px;
+  }
+
+  &__item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    &:nth-child(5n+2) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+}
+
+// CONTACT
+.contact {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacer-bigger;
+  }
+
+  &__title {
+    margin-top: $spacer-double;
+  }
+}
+
+// MAP
+.map {
+  padding: 0;
+}
+
+// FORM
+.form {
+  &__field {
+    margin-bottom: $spacer;
+
+    label {
+      display: block;
+      color: $grey-500;
+      font-size: 15px;
+      margin-bottom: $spacer-half;
+    }
+
+    :is(input, textarea, select) {
+      width: 100%;
+      padding: $spacer-half;
+      border: 1px solid $grey-700;
+      border-radius: 4px;
+    }
+  }
+
+  &__required {
+    &:after {
+      content: "*";
+      color: red;
+      margin-left: 4px;
+    }
+  }
+}
+
+// FOOTER
+.footer {
+  a {
+    color: white;
+
+    &:hover,
+    &:focus {
+      color: $accent;
+    }
+  }
+
+  &__grid {
+    padding: $spacer-double $spacer-bigger;
+    background-color: $grey-100;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacer-bigger;
+  }
+
+  &__copyright {
+    padding: $spacer $spacer-bigger;
+    font-size: 14px;
+    text-align: center;
+    background-color: $grey-900;
+    color: $grey-500;
+  }
+
+  &__links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li:not(:last-child) {
+      margin-bottom: $spacer-quarter;
+    }
+  }
+
+  &__title {
+    color: $grey-700;
+  }
+}
